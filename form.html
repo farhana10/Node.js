@@ -1,0 +1,41 @@
+<html>
+    <head>
+         <title>Simple node server</title>
+        
+    </head>
+        <body>
+            <p>User name:</p>
+  	        <input type="text" id="user"/><br/><br/>
+  	         <p>Email:</p>
+  	        <input type="text" id="email"/><br/><br/>
+            
+
+  	        <button id="submit">Submit</button>
+<script>
+     
+    var form = {user:"", email:""};
+  	$('#submit').click(function(){
+    	form.user = $('#user').val();
+    	form.email = $('email').val();
+    	
+$.ajax({
+    	method: "POST",
+    	url: "/api/form",
+data: form
+}).done(function(response){
+console.log(response);
+    	window.location.replace("/form/"+response._id);;
+}).fail(function(response){
+$("#error").text(JSON.parse(response.responseText).message);
+});
+});
+                                                                                 
+</script>
+            
+            
+            
+        </body>
+        
+   
+    
+</html>
