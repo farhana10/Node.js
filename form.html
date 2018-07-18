@@ -8,25 +8,23 @@
   	        <input type="text" id="user"/><br/><br/>
   	         <p>Email:</p>
   	        <input type="text" id="email"/><br/><br/>
-            
-
   	        <button id="submit">Submit</button>
+  	        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
      
     var form = {user:"", email:""};
   	$('#submit').click(function(){
     	form.user = $('#user').val();
-    	form.email = $('email').val();
+    	form.email = $('#email').val();
     	
 $.ajax({
     	method: "POST",
-    	url: "/api/form",
-data: form
+    	url: "/submit_user",
+        data: form
 }).done(function(response){
 console.log(response);
-    	window.location.replace("/form/"+response._id);;
 }).fail(function(response){
-$("#error").text(JSON.parse(response.responseText).message);
+console.log(response);
 });
 });
                                                                                  
